@@ -1,24 +1,24 @@
 package demo;
 
-
-import demo.interfaces.Logger2;
-import demo.interfaces.LoggerConfiguration;
+import demo.configurations.LoggerConfiguration;
+import demo.loaders.FileLoggerConfigurationLoader;
+import demo.loggers.Logger;
+import demo.loggers.FileLogger;
 
 public class Main {
 
     public static void main(String[] args) {
-//        LoggerConfiguration lc = new FileLoggerConfigurationLoader().load();
-//        System.out.println(lc.getSize());
-        LoggerConfiguration logger = new FileLoggerConfiguration.FileConfigurationBuilder()
-                .setSize(100)
-                .setThirdPosition("Test")
-                .setDir("C:\\Users\\Александр\\Documents\\Lightshot\\loggs\\")
-                .setLevel(LoggingLevel.INFO)
-                .build();
+      LoggerConfiguration logger = new FileLoggerConfigurationLoader()
+              .load("C:\\Users\\Александр\\Documents\\Hillel\\Projects\\logger-task\\cofig.json");
 
+//        FileLoggerConfiguration logger = new FileLoggerConfiguration.FileConfigurationBuilder()
+//                .setLevel(LoggingLevel.INFO)
+//                .setSize(100)
+//                .setFormat("LEVEL-MESSAGE-TIME")
+//                .setDir("C:\\\\Users\\\\Александр\\\\Documents\\\\Hillel\\\\Projects\\\\logger-task\\\\logs")
+//                .build();
 
-        Logger2 fileLogger = new FileLogger();
-        logger.getLatestFileFromDir(logger.getDirPath());
-        fileLogger.logging(logger, "ALL");
-    }
-}
+        Logger fileLogger = new FileLogger();
+        fileLogger.doLogging(logger, "ALL");
+
+    }}

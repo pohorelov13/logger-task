@@ -1,4 +1,6 @@
 {
-  "level":"INFO",
-  "size": 500
+  "dirPath": "C:\\Users\\Александр\\Documents\\Hillel\\Projects\\logger-task\\logs",
+  "level": "INFO",
+  "size": 500,
+  "format": "TIME-LEVEL-MESSAGE"
 }
