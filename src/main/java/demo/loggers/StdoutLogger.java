@@ -1,6 +1,5 @@
 package demo.loggers;
 
-import demo.LoggingLevel;
 import demo.configurations.LoggerConfiguration;
 import demo.utils.Formatter;
 

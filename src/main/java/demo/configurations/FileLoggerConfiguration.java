@@ -1,8 +1,5 @@
 package demo.configurations;
 
-import demo.LoggingLevel;
-import demo.builders.Builder;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

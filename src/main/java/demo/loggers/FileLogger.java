@@ -1,8 +1,6 @@
 package demo.loggers;
 
-import demo.configurations.FileLoggerConfiguration;
 import demo.utils.Formatter;
-import demo.LoggingLevel;
 import demo.configurations.LoggerConfiguration;
 
 import java.io.*;
