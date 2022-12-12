@@ -1,9 +1,12 @@
 package demo.configurations;
 
 import demo.LoggingLevel;
-import demo.interfaces.Builder;
+import demo.builders.Builder;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -11,10 +14,10 @@ public class FileLoggerConfiguration extends LoggerConfiguration {
 
     private int size = 30;
 
-    private final String logName = String.format("\\Log_%s.txt", LocalDateTime.now().format(DateTimeFormatter
-            .ofPattern("dd.MM.yy-HH_mm_s")));
+    private final String logName = String.format("\\Logs_%s.txt", LocalDateTime.now().format(DateTimeFormatter
+            .ofPattern("dd.MM.yy_HH.mm.s")));
 
-    private String dirPath = "C:\\Users\\Александр\\Documents\\Lightshot\\loggs\\";
+    private String dirPath = "Logs";
 
     public String getLogName() {
         return logName;
@@ -28,16 +31,28 @@ public class FileLoggerConfiguration extends LoggerConfiguration {
         return size;
     }
 
+    public void setDirPath(String dirPath) {
+        this.dirPath = dirPath;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     public File prepare() {
         File file;
-        if (getLatestFileFromDir(getDirPath()).length() < getSize()) {
-            file = getLatestFileFromDir(getDirPath());
-        } else file = new File(getDirPath() + getLogName());
+        try {
+            if (getLatestFileFromDir(getDirPath()).length() < getSize()) {
+                file = getLatestFileFromDir(getDirPath());
+            } else file = new File(getDirPath() + getLogName());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return file;
     }
 
-    public File getLatestFileFromDir(String dirPath) {
-        File dir = new File(dirPath);
+    public File getLatestFileFromDir(String dirPath) throws IOException {
+        File dir = new File(Files.createDirectories(Paths.get(getDirPath())).toString());//File(dirPath);
         File[] files = dir.listFiles();
         if (files == null || files.length == 0) {
             return new File(dirPath + getLogName());
@@ -49,40 +64,6 @@ public class FileLoggerConfiguration extends LoggerConfiguration {
                 }
             }
             return lastModifiedFile;
-        }
-    }
-
-   public static class FileConfigurationBuilder implements Builder {
-
-        FileLoggerConfiguration fileLoggerConfiguration = new FileLoggerConfiguration();
-
-        @Override
-        public Builder setFormat(String format) {
-            fileLoggerConfiguration.setFormat(format);
-            return this;
-        }
-
-        @Override
-        public Builder setDir(String path) {
-            fileLoggerConfiguration.dirPath = path;
-            return this;
-        }
-
-        @Override
-        public Builder setLevel(LoggingLevel level) {
-            fileLoggerConfiguration.setLevel(level);
-            return this;
-        }
-
-        @Override
-        public Builder setSize(int size) {
-            fileLoggerConfiguration.size = size;
-            return this;
-        }
-
-        @Override
-        public FileLoggerConfiguration build() {
-            return fileLoggerConfiguration;
         }
     }
 }
