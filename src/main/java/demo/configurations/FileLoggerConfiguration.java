@@ -11,10 +11,10 @@ public class FileLoggerConfiguration extends LoggerConfiguration {
 
     private int size = 30;
 
-    private final String logName = String.format("\\Log_%s.txt", LocalDateTime.now().format(DateTimeFormatter
-            .ofPattern("dd.MM.yy-HH_mm_s")));
+    private final String logName = String.format("\\Logs_%s.txt", LocalDateTime.now().format(DateTimeFormatter
+            .ofPattern("dd.MM.yy_HH.mm.s")));
 
-    private String dirPath = "C:\\Users\\Александр\\Documents\\Lightshot\\loggs\\";
+    private String dirPath = "Logs";
 
     public String getLogName() {
         return logName;
@@ -26,6 +26,14 @@ public class FileLoggerConfiguration extends LoggerConfiguration {
 
     public int getSize() {
         return size;
+    }
+
+    public void setDirPath(String dirPath) {
+        this.dirPath = dirPath;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public File prepare() {
@@ -41,7 +49,7 @@ public class FileLoggerConfiguration extends LoggerConfiguration {
     }
 
     public File getLatestFileFromDir(String dirPath) throws IOException {
-        File dir = new File(Files.createDirectories(Paths.get(getDirPath())).toString());
+        File dir = new File(Files.createDirectories(Paths.get(getDirPath())).toString());//File(dirPath);
         File[] files = dir.listFiles();
         if (files == null || files.length == 0) {
             return new File(dirPath + getLogName());
@@ -54,6 +62,4 @@ public class FileLoggerConfiguration extends LoggerConfiguration {
             }
             return lastModifiedFile;
         }
-    }
-
-}
+    }}

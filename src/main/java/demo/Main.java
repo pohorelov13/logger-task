@@ -1,5 +1,7 @@
 package demo;
 
+import demo.builders.FileLoggerConfigurationBuilder;
+import demo.configurations.FileLoggerConfiguration;
 import demo.configurations.LoggerConfiguration;
 import demo.loaders.FileLoggerConfigurationLoader;
 import demo.loggers.Logger;
@@ -8,17 +10,17 @@ import demo.loggers.FileLogger;
 public class Main {
 
     public static void main(String[] args) {
-      LoggerConfiguration logger = new FileLoggerConfigurationLoader()
-              .load("C:\\Users\\Александр\\Documents\\Hillel\\Projects\\logger-task\\cofig.json");
+      LoggerConfiguration configuration = new FileLoggerConfigurationLoader()
+              .load("config.json");
 
-//        FileLoggerConfiguration logger = new FileLoggerConfiguration.FileConfigurationBuilder()
-//                .setLevel(LoggingLevel.INFO)
+//        LoggerConfiguration logger = new FileLoggerConfigurationBuilder()
+//                .setLevel(LoggingLevel.DEBUG)
 //                .setSize(100)
 //                .setFormat("LEVEL-MESSAGE-TIME")
-//                .setDir("C:\\\\Users\\\\Александр\\\\Documents\\\\Hillel\\\\Projects\\\\logger-task\\\\logs")
+//                .setDir("TESTLog")
 //                .build();
 
-        Logger fileLogger = new FileLogger();
-        fileLogger.doLogging(logger, "ALL");
+        Logger logger = new FileLogger();
+        logger.doLogging(configuration, "TEST");
 
     }}

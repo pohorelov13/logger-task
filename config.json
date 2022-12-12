@@ -1,0 +1,6 @@
+{
+  "dirPath": "logsTEST",
+  "level": "DEBUG",
+  "size": 500,
+  "format": "TIME-LEVEL-MESSAGE"
+}
