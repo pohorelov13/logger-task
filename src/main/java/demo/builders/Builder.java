@@ -1,4 +1,4 @@
-package demo.interfaces;
+package demo.builders;
 
 import demo.configurations.FileLoggerConfiguration;
 import demo.LoggingLevel;

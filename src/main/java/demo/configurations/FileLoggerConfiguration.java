@@ -1,9 +1,9 @@
 package demo.configurations;
 
-import demo.LoggingLevel;
-import demo.interfaces.Builder;
-
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -29,15 +29,19 @@ public class FileLoggerConfiguration extends LoggerConfiguration {
     }
 
     public File prepare() {
-        File file;
-        if (getLatestFileFromDir(getDirPath()).length() < getSize()) {
-            file = getLatestFileFromDir(getDirPath());
-        } else file = new File(getDirPath() + getLogName());
+        File file = null;
+        try {
+            if (getLatestFileFromDir(getDirPath()).length() < getSize()) {
+                file = getLatestFileFromDir(getDirPath());
+            } else file = new File(getDirPath() + getLogName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return file;
     }
 
-    public File getLatestFileFromDir(String dirPath) {
-        File dir = new File(dirPath);
+    public File getLatestFileFromDir(String dirPath) throws IOException {
+        File dir = new File(Files.createDirectories(Paths.get(getDirPath())).toString());
         File[] files = dir.listFiles();
         if (files == null || files.length == 0) {
             return new File(dirPath + getLogName());
@@ -52,37 +56,4 @@ public class FileLoggerConfiguration extends LoggerConfiguration {
         }
     }
 
-   public static class FileConfigurationBuilder implements Builder {
-
-        FileLoggerConfiguration fileLoggerConfiguration = new FileLoggerConfiguration();
-
-        @Override
-        public Builder setFormat(String format) {
-            fileLoggerConfiguration.setFormat(format);
-            return this;
-        }
-
-        @Override
-        public Builder setDir(String path) {
-            fileLoggerConfiguration.dirPath = path;
-            return this;
-        }
-
-        @Override
-        public Builder setLevel(LoggingLevel level) {
-            fileLoggerConfiguration.setLevel(level);
-            return this;
-        }
-
-        @Override
-        public Builder setSize(int size) {
-            fileLoggerConfiguration.size = size;
-            return this;
-        }
-
-        @Override
-        public FileLoggerConfiguration build() {
-            return fileLoggerConfiguration;
-        }
-    }
 }
