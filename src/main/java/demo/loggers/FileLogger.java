@@ -11,10 +11,15 @@ import java.nio.file.Paths;
 
 
 public class FileLogger extends Logger {
+    public FileLogger(LoggerConfiguration configuration) {
+        super.configuration = configuration;
+    }
+
+    public FileLogger() {
+    }
 
     @Override
     public void debug(String debugMessage, String infoMessage) {
-        LoggerConfiguration configuration = new FileLoggerConfiguration();
         configuration.setLevel(LoggingLevel.INFO);
         printLog(configuration, infoMessage);
         configuration.setLevel(LoggingLevel.DEBUG);
@@ -23,7 +28,6 @@ public class FileLogger extends Logger {
 
     @Override
     public void debug(String message) {
-        LoggerConfiguration configuration = new FileLoggerConfiguration();
         configuration.setLevel(LoggingLevel.INFO);
         printLog(configuration, message);
         configuration.setLevel(LoggingLevel.DEBUG);
@@ -54,7 +58,6 @@ public class FileLogger extends Logger {
 
     @Override
     public void info(String message) {
-        LoggerConfiguration configuration = new FileLoggerConfiguration();
         configuration.setLevel(LoggingLevel.INFO);
         printLog(configuration, message);
     }

@@ -6,9 +6,15 @@ import demo.configurations.StdoutLoggerConfiguration;
 import demo.utils.Formatter;
 
 public class StdoutLogger extends Logger {
+
+    public StdoutLogger(LoggerConfiguration configuration) {
+        super.configuration = configuration;
+    }
+
+
+
     @Override
     public void debug(String debugMessage, String infoMessage) {
-        LoggerConfiguration configuration = new StdoutLoggerConfiguration();
         configuration.setLevel(LoggingLevel.INFO);
         printLog(configuration, infoMessage);
         configuration.setLevel(LoggingLevel.DEBUG);
@@ -17,7 +23,6 @@ public class StdoutLogger extends Logger {
 
     @Override
     public void debug(String message) {
-        LoggerConfiguration configuration = new StdoutLoggerConfiguration();
         configuration.setLevel(LoggingLevel.INFO);
         printLog(configuration, message);
         configuration.setLevel(LoggingLevel.DEBUG);
@@ -49,7 +54,6 @@ public class StdoutLogger extends Logger {
 
     @Override
     public void info(String message) {
-        LoggerConfiguration configuration = new StdoutLoggerConfiguration();
         configuration.setLevel(LoggingLevel.INFO);
         printLog(configuration, message);
     }

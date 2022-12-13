@@ -6,6 +6,8 @@ import demo.configurations.LoggerConfiguration;
 
 public abstract class Logger {
 
+    LoggerConfiguration configuration;
+
     public abstract void debug(String debugMessage, String infoMessage);
     public abstract void debug(String message);
     public abstract void debug(LoggerConfiguration configuration, String message);
