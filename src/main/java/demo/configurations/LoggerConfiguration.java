@@ -16,9 +16,6 @@ public abstract class LoggerConfiguration {
         this.level = level;
     }
 
-    public File prepare(){
-        return null;
-    }
 
     public String getTime() {
         return time;
@@ -28,7 +25,6 @@ public abstract class LoggerConfiguration {
         return level;
     }
 
-
     public String getFormat() {
         return format;
     }
@@ -36,5 +32,26 @@ public abstract class LoggerConfiguration {
     public void setFormat(String format) {
         this.format = format;
     }
+
+    public String getDirPath(){
+        return null;
+    }
+
+    public File getFile(){
+        return null;
+    }
+
+    public void setFile(File file){
+
+    }
+
+    public  String getLogName(){
+        return null;
+    }
+
+    public int getSize(){
+        return 0;
+    }
+
 }
 
