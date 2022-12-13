@@ -25,7 +25,7 @@ public class Main {
                 .build();
 
         Logger logger = new FileLogger();
-        logger.doLogging(configuration, "d message", "i message");
+        logger.debug("d message", "i message");
 
     }
 }

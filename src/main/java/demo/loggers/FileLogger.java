@@ -11,8 +11,10 @@ import java.nio.file.Paths;
 
 
 public class FileLogger extends Logger {
+
+    LoggerConfiguration configuration = new FileLoggerConfiguration();
     public FileLogger(LoggerConfiguration configuration) {
-        super.configuration = configuration;
+        this.configuration = configuration;
     }
 
     public FileLogger() {

@@ -7,8 +7,10 @@ import demo.utils.Formatter;
 
 public class StdoutLogger extends Logger {
 
+    LoggerConfiguration configuration = new StdoutLoggerConfiguration();
+
     public StdoutLogger(LoggerConfiguration configuration) {
-        super.configuration = configuration;
+        this.configuration = configuration;
     }
 
 
