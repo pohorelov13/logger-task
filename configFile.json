@@ -1,6 +1,6 @@
 {
   "dirPath": "logs2",
-  "level": "DEBUG",
+  "level": "info",
   "size": 500,
   "format": "TIME-LEVEL-MESSAGE"
 }

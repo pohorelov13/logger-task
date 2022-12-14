@@ -1,4 +1,4 @@
 FILE: logses
-LEVEL: debug 
+LEVEL: info
 MAX-SIZE: 100
 FORMAT: Level-time-Message

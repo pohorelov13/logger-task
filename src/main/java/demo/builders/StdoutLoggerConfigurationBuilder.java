@@ -9,16 +9,23 @@ public class StdoutLoggerConfigurationBuilder implements Builder {
 
     @Override
     public StdoutLoggerConfigurationBuilder setFormat(String format) {
-        stdoutLoggerConfiguration.setFormat(format);
+        if (format != null) {
+            stdoutLoggerConfiguration.setFormat(format);
+        }
         return this;
+
     }
 
 
     @Override
     public StdoutLoggerConfigurationBuilder setLevel(LoggingLevel level) {
-        stdoutLoggerConfiguration.setLevel(level);
+        if (level != null) {
+            stdoutLoggerConfiguration.setLevel(level);
+        }
+
         return this;
     }
+
 
     @Override
     public LoggerConfiguration build() {

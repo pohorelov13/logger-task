@@ -2,7 +2,6 @@ package demo.configurations;
 
 import demo.LoggingLevel;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -33,23 +32,15 @@ public abstract class LoggerConfiguration {
         this.format = format;
     }
 
-    public String getDirPath(){
+    public String getDirPath() {
         return null;
     }
 
-    public File getFile(){
+    public String getLogName() {
         return null;
     }
 
-    public void setFile(File file){
-
-    }
-
-    public  String getLogName(){
-        return null;
-    }
-
-    public int getSize(){
+    public int getSize() {
         return 0;
     }
 

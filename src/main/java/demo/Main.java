@@ -14,18 +14,20 @@ import demo.loggers.StdoutLogger;
 public class Main {
 
     public static void main(String[] args) {
-//        LoggerConfiguration configuration = new StdoutLoggerConfigurationLoader()
-//                .load("tt.txt");
+        LoggerConfiguration configurationFile = new FileLoggerConfigurationLoader()
+                .load("config.txt");
 
-        LoggerConfiguration configuration = new FileLoggerConfigurationBuilder()
+        LoggerConfiguration configurationBuild = new FileLoggerConfigurationBuilder()
                 .setLevel(LoggingLevel.INFO)
                 .setSize(100)
                 .setFormat("LEVEL-TIME-MESSAGE")
                 .setDir("LogsTEST")
                 .build();
 
-        Logger logger = new FileLogger();
-        logger.debug("d message", "i message");
+        Logger logger = new FileLogger(configurationFile);
+        logger.debug("debug message");
+
+        logger.info("info message");
 
     }
 }
