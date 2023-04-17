@@ -1,0 +1,5 @@
+{
+  "level": "INFO",
+  "format": "TIME-MESSAGE-LEVEL",
+  "extra_param": "this should not be here"
+}
